@@ -49,6 +49,19 @@ const Map = () => {
         filter: ['==', '$type', 'Polygon'], // Use this filter to ensure only polygon features are selected
       });
 
+      // Add a layer to mask other countries
+      map.addLayer({
+        id: 'mask-layer',
+        type: 'fill',
+        paint: {
+          'fill-color': 'rgba(128, 128, 128, 0.5)', // Grey with 50% opacity
+          'fill-opacity': 1,
+        },
+      });
+
+      // Add a filter to the mask layer to exclude India
+      map.setFilter('mask-layer', ['!=', 'iso_3166_1_alpha_3', 'IND']);
+
       // Adjust existing background layer if present
       const backgroundLayer = map.getStyle().layers.find(layer => layer.type === 'background');
       if (backgroundLayer) {
@@ -83,30 +96,65 @@ const Map = () => {
           map.setLayoutProperty(layer.id, 'visibility', 'none');
         }
       });
+
+      // Add location tags with hyperlinks
+      const locationTags = [
+        {
+          name: 'New Delhi',
+          coordinates: [77.2090, 28.6139],
+        },
+        {
+          name: 'Mumbai',
+          coordinates: [72.8777, 19.0759],
+        },
+        {
+          name: 'Bengaluru',
+          coordinates: [77.5946, 12.9716],
+        },
+        {
+          name: 'Hyderabad',
+          coordinates: [78.4867, 17.3850],
+        },
+        {
+          name: 'Chennai',
+          coordinates: [80.2707, 13.0827],
+        },
+      ];
+
+      locationTags.forEach((location) => {
+        const marker = new maplibregl.Marker({
+          color: 'rgba(255, 165, 0, 0.8)', // Orange with 80% opacity
+          scale: 0.5, // Scale the marker to 0.5x
+        })
+        .setLngLat(location.coordinates)
+        .setPopup(new maplibregl.Popup({ offset: 25 }) // Offset the popup by 25px
+          .setHTML(`<a href="https://www.google.com/maps/search/?api=1&query=${location.name}" target="_blank">${location.name}</a>`))
+        .addTo(map);
     });
+  });
 
-    map.on('click', (e) => {
-      console.log('Map clicked at', e.lngLat);
-    });
+  map.on('click', (e) => {
+    console.log('Map clicked at', e.lngLat);
+  });
 
-    return () => map.remove();
-  }, [mapContainerRef]);
+  return () => map.remove();
+}, [mapContainerRef]);
 
-  return (
-    <div
-      ref={mapContainerRef}
-      style={{
-        width: '95vw',
-        height: '100vh',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        margin: 'auto',
-      }}
-    />
-  );
+return (
+  <div
+    ref={mapContainerRef}
+    style={{
+      width: '95vw',
+      height: '100vh',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+      margin: 'auto',
+    }}
+  />
+);
 };
 
 export default Map;
