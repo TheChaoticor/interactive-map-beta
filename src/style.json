@@ -1,0 +1,77 @@
+{
+    "version": 8,
+    "name": "India Map Style",
+    "metadata": {
+      "maplibre": {
+        "name": "India Map Style",
+        "description": "A custom style for an India map"
+      }
+    },
+    "center": [78.9629, 20.5937],
+    "zoom": 5,
+    "layers": [
+      {
+        "id": "background-layer",
+        "type": "background",
+        "paint": {
+          "background-color": "#FFFFFF"
+        }
+      },
+      {
+        "id": "india-layer",
+        "type": "fill",
+        "source": "india",
+        "paint": {
+          "fill-color": "#FFA500",
+          "fill-opacity": 0.8
+        }
+      },{
+        "id": "hillshade",
+        "type": "hillshade",
+        "source": "maplibre",
+        "paint": {
+          "hillshade-exaggeration": 0.5,
+          "hillshade-illumination-direction": 315,
+          "hillshade-illumination-azimuth": 60
+        }
+      },
+      {
+        "id": "state-borders",
+        "type": "line",
+        "source": "india",
+        "paint": {
+          "line-color": "#000000",
+          "line-width": 1
+        },
+        "filter": ["==", "$type", "Polygon"]
+      },
+      {
+        "id": "mask-layer",
+        "type": "fill",
+        "paint": {
+          "fill-color": "rgba(128, 128, 128, 0.5)",
+          "fill-opacity": 1
+        },
+        "filter": ["!=", "iso_3166_1_alpha_3", "IND"]
+      },
+
+      {
+        "id": "water",
+        "type": "fill",
+        "source": "maplibre",
+        "paint": {
+          "fill-color": "#4567b7"
+        },
+        "filter": ["==", "featureType", "water"]
+      }
+    ],
+    "sources": {
+      "india": {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": []
+        }
+      }
+    }
+  }

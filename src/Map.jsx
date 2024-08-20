@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import style from './style.json';
+
 import indiaGeoJson from './in.json'; // Import GeoJSON file
 
 const Map = () => {
