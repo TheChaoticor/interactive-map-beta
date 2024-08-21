@@ -1,0 +1,48 @@
+{
+  "version": 8,
+  "name": "Empty Style",
+  "metadata": {},
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "url": "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=4K3m1IaqqPtNPwtV0mtt"
+    },
+    "indiajson": {
+      "type": "geojson",
+      "data": "https://raw.githubusercontent.com/sanskarsahoo12/interactive-map-beta/main/src/in.json"
+    },
+    "odishajson": {
+      "type": "geojson",
+      "data": "https://cdn.jsdelivr.net/gh/udit-001/india-maps-data@dc5d493/geojson/states/odisha.geojson"
+    }
+  },
+  "sprite": "",
+  "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "bg",
+      "type": "background",
+      "paint": {"background-color": "rgba(255, 255, 255, 1)"}
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "paint": {"fill-color": "rgba(255, 255, 255, 1)"}
+    },
+    {
+      "id": "indiafill",
+      "type": "fill",
+      "source": "indiajson",
+      "paint": {"fill-color": "rgba(255, 0, 0, 1)"}
+    },
+    {
+      "id": "odisha",
+      "type": "fill",
+      "source": "odishajson",
+      "paint": {"fill-color": "rgba(118, 9, 9, 1)"}
+    }
+  ],
+  "id": "pqd40te"
+}
