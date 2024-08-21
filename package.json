@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mapbox/tiny-sdf": "^2.0.6",
     "geojson-places": "^1.0.8",
     "maplibre-gl": "^4.5.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "webgl-wind": "github:mapbox/webgl-wind"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
