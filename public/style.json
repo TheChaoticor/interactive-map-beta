@@ -1,11 +1,12 @@
 {
   "version": 8,
   "name": "Empty Style",
-  "metadata": {},
+  "metadata": {"maputnik:renderer": "mlgljs"},
+  "light": {"anchor": "viewport"},
   "sources": {
     "openmaptiles": {
       "type": "vector",
-      "url": "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=4K3m1IaqqPtNPwtV0mtt"
+      "url": "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=CEGJETtt3JhkMmjnxY1n"
     },
     "indiajson": {
       "type": "geojson",
@@ -22,14 +23,24 @@
     {
       "id": "bg",
       "type": "background",
-      "paint": {"background-color": "rgba(255, 255, 255, 1)"}
+      "minzoom": 0,
+      "paint": {
+        "background-color": ["literal", "rgba(49, 64, 255, 0)"],
+        "background-pattern": ["step", ["zoom"], "", 10, ""]
+      }
     },
     {
       "id": "water",
       "type": "fill",
       "source": "openmaptiles",
       "source-layer": "water",
-      "paint": {"fill-color": "rgba(255, 255, 255, 1)"}
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "rgba(49, 64, 255, 0.8)",
+        "fill-antialias": true,
+        "fill-outline-color": "rgba(0, 0, 0, 1)",
+        "fill-translate-anchor": "map"
+      }
     },
     {
       "id": "indiafill",
@@ -41,7 +52,10 @@
       "id": "odisha",
       "type": "fill",
       "source": "odishajson",
-      "paint": {"fill-color": "rgba(118, 9, 9, 1)"}
+      "paint": {
+        "fill-color": "rgba(118, 9, 9, 1)",
+        "fill-outline-color": "rgba(89, 208, 91, 0.78)"
+      }
     }
   ],
   "id": "pqd40te"

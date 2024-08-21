@@ -58,6 +58,22 @@ const Map = () => {
           .setHTML(`<a href="${location.link}" target="_blank">${location.name}</a>`))
         .addTo(map);
       });
+
+      // Add wind layer
+      map.addLayer({
+        id: 'wind',
+        type: 'raster-particle',
+        source: {
+          type: 'raster',
+          url: 'https://api.maptiler.com/tiles/v3/wind/{z}/{x}/{y}.png?key=CEGJETtt3JhkMmjnxY1n',
+          tileSize: 256,
+        },
+        paint: {
+          'raster-particle-color': 'rgba(255, 255, 255, 0.5)',
+          'raster-particle-size': 10,
+          'raster-particle-speed': 10,
+        },
+      });
     });
 
     map.on('click', (e) => {
